@@ -84,8 +84,8 @@
                     <?php }
                     if (isset($_POST["submit"])) {
                         $username = trim(strtolower($_POST["username"]));
-
-                        $pass1 = $_POST["pass"];
+                        $username = cleanUserInput($username);
+                        $pass1 = cleanUserInput($_POST["pass"]);
                         $dead = "false";
                         $message = "Vul de velden correct in";
                         $_SESSION["username"] = $username;

@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once 'includes/connect.inc.php';
-$number = $_POST["id"];
-$member = $_SESSION["username"];
-$time = $_POST["time"];
-$date = $_POST["date"];
-$check = $_POST["check"];
+$number = htmlentities($_POST["id"]);
+$member = htmlentities($_SESSION["username"]);
+$time = htmlentities($_POST["time"]);
+$date = htmlentities($_POST["date"]);
+$check = htmlentities($_POST["check"]);
 $usersdata = mysqli_query($link, "SELECT * FROM members WHERE username= '$member'");
 $userdata = mysqli_fetch_assoc($usersdata);
 $behandelingen = mysqli_query($link, "SELECT * FROM behandelingen WHERE idbehandelingen= '$number'");
@@ -78,6 +78,8 @@ $userid = $userdata["id"];
 <!-- /.container -->
 
 <?php require_once 'includes/footer.php' ?>
+<!-- Security function -->
+<script src="js/app.js"></script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>

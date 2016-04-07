@@ -87,12 +87,12 @@ $gegevens = mysqli_fetch_array($gegeven);
                     $ok = false;
                 }
                 if ($ok == true) {
-                    $firstname = $_POST["firstname"];
-                    $lastname = $_POST["lastname"];
-                    $email = $_POST["email"];
-                    $password = $_POST["password"];
+                    $firstname = cleanUserInput($_POST["firstname"]);
+                    $lastname = cleanUserInput($_POST["lastname"]);
+                    $email = cleanUserInput($_POST["email"]);
+                    $password = cleanUserInput($_POST["password"]);
                     if ($password == "") {
-                        $password = $gegevens["password"];
+                        $password = cleanUserInput($gegevens["password"]);
                     } else {
                         $password = trim($password);
                         $password = md5($password);
@@ -120,17 +120,17 @@ $gegevens = mysqli_fetch_array($gegeven);
                 <div class="form-group">
                     <label for="firstname">Voornaam: </label>
                     <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Voornaam"
-                           value="<?= $gegevens["firstname"]; ?>">
+                           value="<?= htmlentities($gegevens["firstname"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="lastname">Achternaam: </label>
                     <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Achternaam"
-                           value="<?= $gegevens["lastname"]; ?>">
+                           value="<?= htmlentities($gegevens["lastname"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail: </label>
                     <input type="text" name="email" class="form-control" id="email" placeholder="E-mail adres"
-                           value="<?= $gegevens["email"]; ?>">
+                           value="<?= htmlentities($gegevens["email"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="password">Wachtwoord: </label>
@@ -139,22 +139,22 @@ $gegevens = mysqli_fetch_array($gegeven);
                 <div class="form-group">
                     <label for="adress">Adres: </label>
                     <input type="text" name="adress" class="form-control" id="adress"
-                           placeholder="Straatnaam + huisnummer" value="<?= $gegevens["adress"]; ?>">
+                           placeholder="Straatnaam + huisnummer" value="<?= htmlentities($gegevens["adress"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="city">Woonplaats: </label>
                     <input type="text" name="city" class="form-control" id="city" placeholder="Woonplaats"
-                           value="<?= $gegevens["city"]; ?>">
+                           value="<?= htmlentities($gegevens["city"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="zipcode">Postcode: </label>
                     <input type="text" name="zipcode" class="form-control" id="zipcode" placeholder="Postcode"
-                           value="<?= $gegevens["zipcode"]; ?>">
+                           value="<?= htmlentities($gegevens["zipcode"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="telnr">Telefoon nummer: </label>
                     <input type="text" name="telnr" class="form-control" id="telnr" placeholder="Telefoon nummer"
-                           value="<?= $gegevens["telnr"]; ?>">
+                           value="<?= htmlentities($gegevens["telnr"]); ?>">
                 </div>
                 <button name="submit" type="submit" class="btn btn-default">Submit</button>
                 <div class="form-group">
@@ -168,6 +168,9 @@ $gegevens = mysqli_fetch_array($gegeven);
 <!-- /.container -->
 
 <?php require_once 'includes/footer.php' ?>
+
+<!-- Security function -->
+<script src="js/app.js"></script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>

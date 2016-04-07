@@ -79,17 +79,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <tbody>
                     <?php foreach ($users as $member) { ?>
                         <tr>
-                            <td><?= $member['id'] ?></td>
-                            <td><?= $member['username'] ?></td>
-                            <td><?= $member['firstname'] ?></td>
-                            <td><?= $member['lastname'] ?></td>
-                            <td><?= $member['email'] ?></td>
-                            <td><?= $member['telnr'] ?></td>
-                            <td><?= $member['adress'] ?></td>
-                            <td><?= $member['city'] ?></td>
-                            <td><?= $member['zipcode'] ?></td>
-                            <td><?= $member['ip'] ?></td>
-                            <td><?= $member['status'] ?></td>
+                            <td><?= htmlentities($member['id']) ?></td>
+                            <td><?= htmlentities($member['username']) ?></td>
+                            <td><?= htmlentities($member['firstname']) ?></td>
+                            <td><?= htmlentities($member['lastname']) ?></td>
+                            <td><?= htmlentities($member['email']) ?></td>
+                            <td><?= htmlentities($member['telnr']) ?></td>
+                            <td><?= htmlentities($member['adress']) ?></td>
+                            <td><?= htmlentities($member['city']) ?></td>
+                            <td><?= htmlentities($member['zipcode']) ?></td>
+                            <td><?= htmlentities($member['ip']) ?></td>
+                            <td><?= htmlentities($member['status']) ?></td>
                             <td><a href="edit_user.php?userid=<?= $member['id']?>">Wijzigen</a></td>
                         </tr>
                     <?php } ?>

@@ -116,10 +116,10 @@ require_once "includes/functions.php";
                 if (isset($_POST['submitcontact'])) {
                     $name = trim(strtolower($_POST['name']));
                     $name = cleanUserInput($name);
-                    $email = $_POST['email'];
-                    $tel = $_POST['tel'];
-                    $message = $_POST['message'];
-                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $email = cleanUserInput($_POST['email']);
+                    $tel = cleanUserInput($_POST['tel']);
+                    $message = cleanUserInput($_POST['message']);
+                    $ip = cleanUserInput($_SERVER["REMOTE_ADDR"]);
                     $dead = false;
                     if (strlen($tel) <= 9 || strlen($tel) >= 12) {
                         $dead = true;
@@ -133,7 +133,7 @@ require_once "includes/functions.php";
                         require_once "includes/connect.inc.php";
                         $query1 = "INSERT INTO contact(name, email, tel, message, ip) VALUES ('$name','$email', '$tel','$message', '$ip')";
                         if (mysqli_query($link, $query1)) {
-                            echo "Bedankt voor je bericht $name. Er word zo snel mogenlijk contact met je opgenomen.";
+                            echo "Bedankt voor je bericht".htmlentities($name)."Er word zo snel mogenlijk contact met je opgenomen.";
                         }
 
                     } else {
@@ -145,7 +145,7 @@ require_once "includes/functions.php";
                     <div class="row">
                         <div class="form-group col-lg-4">
                             <label>Naam</label>
-                            <input type="" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name">
                         </div>
                         <div class="form-group col-lg-4">
                             <label>Email Adres</label>
@@ -173,14 +173,15 @@ require_once "includes/functions.php";
 <!-- /.container -->
 
 <?php require_once 'includes/footer.php' ?>
+
 <!-- Js Functions -->
 <script src="js/app.js"></script>
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
 
+<script src="js/bootstrap.min.js"></script>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 

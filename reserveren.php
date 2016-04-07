@@ -48,33 +48,34 @@
                 <hr>
             </div>
             <?php if (isset($_SESSION["login"])) {
-            if ($_SESSION["login"] !== "true") { ?>
-            Kies een behandeling om te reserveren. Als je meerdere behandelingen wilt kiezen zult u een extra
-            reservering moeten maken.<br><br>
-            <table class="table">
-                <tr>
-                    <th>Soort behandeling</th>
-                    <th>Omschrijving</th>
-                    <th>Prijs</th>
-                    <th>Duur</th>
-                    <th>Reserveren</th>
-                </tr>
-                <?php foreach ($behandelingen as $behandeling) { ?>
-                    <tr>
-                        <th><?= $behandeling["kind"] ?></th>
-                        <th><?= $behandeling["description"] ?></th>
-                        <th><?= $behandeling["price"] ?></th>
-                        <th><?= $behandeling["time"] ?></th>
-                        <th>
-                            <form action="reserveren1.php" method="POST">
-                                <input type="hidden" name="id" value="<?= $behandeling['idbehandelingen'] ?>">
-                                <input type="submit" value="Reserveren">
-                            </form>
-                        </th>
-                    </tr>
-                <?php } ?>
-            </table>
-            <?php } } else { ?>
+                if ($_SESSION["login"] !== "true") { ?>
+                    Kies een behandeling om te reserveren. Als je meerdere behandelingen wilt kiezen zult u een extra
+                    reservering moeten maken.<br><br>
+                    <table class="table">
+                        <tr>
+                            <th>Soort behandeling</th>
+                            <th>Omschrijving</th>
+                            <th>Prijs</th>
+                            <th>Duur</th>
+                            <th>Reserveren</th>
+                        </tr>
+                        <?php foreach ($behandelingen as $behandeling) { ?>
+                            <tr>
+                                <th><?= $behandeling["kind"] ?></th>
+                                <th><?= $behandeling["description"] ?></th>
+                                <th><?= $behandeling["price"] ?></th>
+                                <th><?= $behandeling["time"] ?></th>
+                                <th>
+                                    <form action="reserveren1.php" method="POST">
+                                        <input type="hidden" name="id" value="<?= $behandeling['idbehandelingen'] ?>">
+                                        <input type="submit" value="Reserveren">
+                                    </form>
+                                </th>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                <?php }
+            } else { ?>
                 <!--Login script-->
                 <div>
                     Log in met een account of <a href="registreren.php">Maak een account aan</a>
@@ -94,8 +95,8 @@
                 <?php
                 if (isset($_POST["submit"])) {
                     $username = trim(strtolower($_POST["username"]));
-
-                    $pass1 = $_POST["pass"];
+                    $username = cleanUserInput($username);
+                    $pass1 = cleanUserInput($_POST["pass"]);
                     $dead = "false";
                     $message = "Vul de velden correct in";
                     $_SESSION["username"] = $username;
@@ -141,7 +142,8 @@
 <!-- /.container -->
 
 <?php require_once 'includes/footer.php' ?>
-
+<!--security function-->
+<script src="js/app.js"></script>
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 

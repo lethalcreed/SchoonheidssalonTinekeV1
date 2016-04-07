@@ -124,7 +124,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Voornaam:
                         </td>
                         <td>
-                            <?= $userdata["firstname"]; ?>
+                            <?= htmlentities($userdata["firstname"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -132,7 +132,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Achternaam:
                         </td>
                         <td>
-                            <?= $userdata["lastname"]; ?>
+                            <?= htmlentities($userdata["lastname"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -140,7 +140,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             E-Mail:
                         </td>
                         <td>
-                            <?= $userdata["email"]; ?>
+                            <?= htmlentities($userdata["email"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -148,7 +148,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Adres:
                         </td>
                         <td>
-                            <?= $userdata["adress"]; ?>
+                            <?= htmlentities($userdata["adress"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -156,7 +156,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Woonplaats:
                         </td>
                         <td>
-                            <?= $userdata["city"]; ?>
+                            <?= htmlentities($userdata["city"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -164,7 +164,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Postcode:
                         </td>
                         <td>
-                            <?= $userdata["zipcode"]; ?>
+                            <?= htmlentities($userdata["zipcode"]); ?>
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +172,7 @@ $behandeling = mysqli_fetch_assoc($behandelingen);
                             Telefoonnummer:
                         </td>
                         <td>
-                            <?= $userdata["telnr"]; ?>
+                            <?= htmlentities($userdata["telnr"]); ?>
                         </td>
                     </tr>
                 </table>

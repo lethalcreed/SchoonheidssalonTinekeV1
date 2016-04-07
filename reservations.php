@@ -82,17 +82,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <tbody>
                     <?php foreach ($reservations as $reservation) { ?>
                         <tr>
-                            <td><?= $reservation['id_reservation'] ?></td>
-                            <td><?= $reservation['members_id'] ?></td>
-                            <td><?= $reservation['firstname'] ?></td>
-                            <td><?= $reservation['lastname'] ?></td>
-                            <td><?= $reservation['email'] ?></td>
-                            <td><?= $reservation['telnr'] ?></td>
-                            <td><?= $reservation['kind'] ?></td>
-                            <td><?= $reservation['dates'] ?></td>
-                            <td><?= $reservation['times'] ?></td>
-                            <td><?= $reservation['time'] ?></td>
-                            <td><?= $reservation['price'] ?></td>
+                            <td><?= htmlentities($reservation['id_reservation']) ?></td>
+                            <td><?= htmlentities($reservation['members_id']) ?></td>
+                            <td><?= htmlentities($reservation['firstname']) ?></td>
+                            <td><?= htmlentities($reservation['lastname']) ?></td>
+                            <td><?= htmlentities($reservation['email']) ?></td>
+                            <td><?= htmlentities($reservation['telnr']) ?></td>
+                            <td><?= htmlentities($reservation['kind']) ?></td>
+                            <td><?= htmlentities($reservation['dates']) ?></td>
+                            <td><?= htmlentities($reservation['times']) ?></td>
+                            <td><?= htmlentities($reservation['time']) ?></td>
+                            <td><?= htmlentities($reservation['price']) ?></td>
                             <td><a href="delete_reservation.php?reservation_id=<?= $reservation['id_reservation']?>">Verwijder</a></td>
                         </tr>
                     <?php } ?>
@@ -104,6 +104,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 </div>
 <!-- /.container -->
 <?php require_once 'includes/footer.php' ?>
+
+<!-- security function -->
+<script src="js/app.js"></script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>

@@ -89,21 +89,21 @@ $gegevens = mysqli_fetch_array($gegeven);
                     $ok = false;
                 }
                 if ($ok == true) {
-                    $username = $_POST["username"];
-                    $firstname = $_POST["firstname"];
-                    $lastname = $_POST["lastname"];
-                    $email = $_POST["email"];
-                    $password = $_POST["password"];
+                    $username = cleanUserInput($_POST["username"]);
+                    $firstname = cleanUserInput($_POST["firstname"]);
+                    $lastname = cleanUserInput($_POST["lastname"]);
+                    $email = cleanUserInput($_POST["email"]);
+                    $password = cleanUserInput($_POST["password"]);
                     if ($password == "") {
                         $password = $gegevens["password"];
                     } else {
                         $password = trim($password);
                         $password = md5($password);
                     }
-                    $adress = $_POST["adress"];
-                    $city = $_POST["city"];
-                    $zipcode = $_POST["zipcode"];
-                    $telnr = $_POST["telnr"];
+                    $adress = cleanUserInput($_POST["adress"]);
+                    $city = cleanUserInput($_POST["city"]);
+                    $zipcode = cleanUserInput($_POST["zipcode"]);
+                    $telnr = cleanUserInput($_POST["telnr"]);
                     $mysqlok = true;
                     $sql = "UPDATE members SET username='$username', firstname='$firstname', lastname='$lastname', email='$email', password='$password', adress='$adress', city='$city', zipcode='$zipcode', telnr='$telnr' WHERE id='$iduser'";
                     $result = mysqli_query($link, $sql);
@@ -124,22 +124,22 @@ $gegevens = mysqli_fetch_array($gegeven);
                 <div class="form-group">
                     <label for="username">Gebruikersnaam: </label>
                     <input type="text" name="username" class="form-control" id="username" placeholder="Gebruikersnaam"
-                           value="<?= $gegevens["username"]; ?>">
+                           value="<?= htmlentities($gegevens["username"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="firstname">Voornaam: </label>
                     <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Voornaam"
-                           value="<?= $gegevens["firstname"]; ?>">
+                           value="<?= htmlentities($gegevens["firstname"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="lastname">Achternaam: </label>
                     <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Achternaam"
-                           value="<?= $gegevens["lastname"]; ?>">
+                           value="<?= htmlentities($gegevens["lastname"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail: </label>
                     <input type="text" name="email" class="form-control" id="email" placeholder="E-mail adres"
-                           value="<?= $gegevens["email"]; ?>">
+                           value="<?= htmlentities($gegevens["email"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="password">Wachtwoord: </label>
@@ -148,22 +148,22 @@ $gegevens = mysqli_fetch_array($gegeven);
                 <div class="form-group">
                     <label for="adress">Adres: </label>
                     <input type="text" name="adress" class="form-control" id="adress"
-                           placeholder="Straatnaam + huisnummer" value="<?= $gegevens["adress"]; ?>">
+                           placeholder="Straatnaam + huisnummer" value="<?= htmlentities($gegevens["adress"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="city">Woonplaats: </label>
                     <input type="text" name="city" class="form-control" id="city" placeholder="Woonplaats"
-                           value="<?= $gegevens["city"]; ?>">
+                           value="<?= htmlentities($gegevens["city"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="zipcode">Postcode: </label>
                     <input type="text" name="zipcode" class="form-control" id="zipcode" placeholder="Postcode"
-                           value="<?= $gegevens["zipcode"]; ?>">
+                           value="<?= htmlentities($gegevens["zipcode"]); ?>">
                 </div>
                 <div class="form-group">
                     <label for="telnr">Telefoon nummer: </label>
                     <input type="text" name="telnr" class="form-control" id="telnr" placeholder="Telefoon nummer"
-                           value="<?= $gegevens["telnr"]; ?>">
+                           value="<?= htmlentities($gegevens["telnr"]); ?>">
                 </div>
                 <button name="submit" type="submit" class="btn btn-default">Submit</button>
                 <div class="form-group">
@@ -179,6 +179,9 @@ $gegevens = mysqli_fetch_array($gegeven);
 <!-- /.container -->
 
 <?php require_once 'includes/footer.php' ?>
+
+<!-- Security function -->
+<script src="js/app.js"></script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>

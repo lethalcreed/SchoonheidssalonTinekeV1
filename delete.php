@@ -27,11 +27,11 @@ if ($ok == true) {
   <title>Delete</title>
 </head>
 <body>
-Weet je zeker dat je <?= $user['username'] ?> wilt verwijderen?
+Weet je zeker dat je <?= htmlentities($user['username']) ?> wilt verwijderen?
 <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="POST">
   <input type="hidden" name="ok" value="true">
   <input type="hidden" name="userid" value="<?=$userid?>">
-  <button name="submit" type="submit" class="btn btn-default"><?= $user['username'] ?> verwijderen</button>
+  <button name="submit" type="submit" class="btn btn-default"><?= htmlentities($user['username']) ?> verwijderen</button>
 </form>
 <a href="users.php">Terug naar gebruikers</a>
 </body>
